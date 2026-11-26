@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import Cookies from 'js-cookie'
 
 import ElementPlus from 'element-plus'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import locale from 'element-plus/es/locale/lang/zh-cn'
@@ -70,6 +71,10 @@ app.use(router)
 app.use(store)
 app.use(plugins)
 app.use(elementIcons)
+// 全局注册 Element Plus 图标，模板中可直接使用 <Plus /> 或 icon="Search"
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 app.component('svg-icon', SvgIcon)
 
 directive(app)
